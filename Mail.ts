@@ -1,4 +1,8 @@
-export class Mail {
+import {StringUtil} from "./StringUtil";
+
+var trimChars = StringUtil.trimChars;
+
+export class MailUtil {
   /**
    * アドレスの表示を整形
    */
@@ -16,12 +20,12 @@ export class Mail {
    * メールヘッダのアドレスをパース
    */
   parseHeaderAddr(addr:string) :{name:string, addr:string} {
-  	var res = {};
+  	var res = {name: "", addr: ""};
   	var m = addr.match(/(.*?)\s*<(.*)>/);
   	if (!m) {
-  		res = {name: "", addr: addr.trim().trimChars('"')};
+  		res = {name: "", addr: trimChars(addr.trim(), '"')};
   	} else {
-  		res = {name: m[1].trim().trimChars('"'), addr: m[2].trim().trimChars('"')};
+  		res = {name: trimChars(m[1].trim(), '"'), addr: trimChars(m[2].trim(), '"')};
   	}
   	return res;
   }
