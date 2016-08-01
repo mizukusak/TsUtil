@@ -21,7 +21,7 @@ export class MailUtil {
    */
   parseHeaderAddr(addr:string) :{name:string, addr:string} {
   	var res = {name: "", addr: ""};
-  	var m = addr.match(/(.*?)\s*<(.*)>/);
+  	var m = addr.match(/(.*?)\s*<([^<]*)>/);
   	if (!m) {
   		res = {name: "", addr: trimChars(addr.trim(), '"')};
   	} else {
